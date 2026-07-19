@@ -5,8 +5,10 @@ import Reveal from "./Reveal";
 
 /** Dual-direction marquee of customer reviews (inspired by 21st.dev marquee-01). */
 export default function Reviews() {
-  const rowA = [...REVIEWS, ...REVIEWS];
-  const rowB = [...REVIEWS].reverse().concat([...REVIEWS].reverse());
+  // split into two rows so each loop stays a reasonable length
+  const half = Math.ceil(REVIEWS.length / 2);
+  const rowA = REVIEWS.slice(0, half);
+  const rowB = REVIEWS.slice(half);
 
   return (
     <section id="avis" className="relative overflow-hidden py-28 md:py-36">
@@ -41,6 +43,7 @@ function MarqueeRow({
       {[0, 1].map((k) => (
         <div
           key={k}
+          style={{ animationDuration: "55s" }}
           className={`flex shrink-0 gap-6 pr-6 ${
             reverse ? "animate-marquee-reverse" : "animate-marquee"
           }`}

@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Restaurants from "@/components/Restaurants";
-import CircularGallery from "@/components/CircularGallery";
+import Gallery from "@/components/Gallery";
 import Reviews from "@/components/Reviews";
 import MapSection from "@/components/MapSection";
 import Footer from "@/components/Footer";
@@ -45,7 +45,7 @@ export default function Home() {
       <Hero started={!loading} />
       <About />
       <Restaurants />
-      <CircularGallery />
+      <Gallery />
       <Reviews />
       <MapSection />
       <Footer />

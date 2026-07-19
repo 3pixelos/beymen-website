@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ABOUT } from "@/lib/data";
 import Reveal from "./Reveal";
+import FlamingBull from "./FlamingBull";
 
 export default function About() {
   const ref = useRef<HTMLElement>(null);
@@ -71,9 +72,7 @@ export default function About() {
                   "radial-gradient(circle, rgba(229,56,59,0.5) 0%, rgba(122,16,21,0.25) 50%, transparent 70%)",
               }}
             />
-            <span className="text-5xl" role="img" aria-label="feu">
-              🔥
-            </span>
+            <FlamingBull />
             <h3 className="mt-6 font-display text-2xl uppercase tracking-wide text-bone md:text-3xl">
               {ABOUT.spectacle.title}
             </h3>
