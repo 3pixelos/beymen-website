@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e1717"/>
+      <stop offset="0.6" stop-color="#141010"/>
+      <stop offset="1" stop-color="#3a0d10"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <rect x="12" y="12" width="1176" height="776" fill="none" stroke="#7a1015" stroke-width="2" stroke-dasharray="10 8" opacity="0.6"/>
+  <text x="50%" y="46%" text-anchor="middle" font-family="Georgia, serif" font-size="85" fill="#a4161a" letter-spacing="4">BEYMEN</text>
+  <text x="50%" y="56%" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="40" fill="#a89f96">Beymen Iberia</text>
+  <text x="50%" y="63%" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="30" fill="#6b625c">photo à remplacer</text>
+</svg>

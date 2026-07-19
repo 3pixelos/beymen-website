@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-ink: #0a0807;
+  --color-coal: #141010;
+  --color-smoke: #1e1717;
+  --color-blood: #7a1015;
+  --color-crimson: #a4161a;
+  --color-ember: #e5383b;
+  --color-bone: #f5f1eb;
+  --color-ash: #a89f96;
+  --font-display: var(--font-cinzel), serif;
+  --font-body: var(--font-outfit), sans-serif;
+  --font-condensed: var(--font-bebas), sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-crimson);
+  color: var(--color-bone);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-blood);
+  border-radius: 5px;
+}
+
+/* film grain overlay */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+/* caution tape marquee */
+@keyframes tape-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes tape-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.animate-tape-left {
+  animation: tape-left 14s linear infinite;
+}
+.animate-tape-right {
+  animation: tape-right 14s linear infinite;
+}
+
+/* review marquees */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - 1.5rem)); }
+}
+@keyframes marquee-reverse {
+  from { transform: translateX(calc(-100% - 1.5rem)); }
+  to { transform: translateX(0); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 40s linear infinite;
+}
+.marquee-paused:hover .animate-marquee,
+.marquee-paused:hover .animate-marquee-reverse {
+  animation-play-state: paused;
+}
+
+/* swing for the FERMÉ sign */
+@keyframes swing {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+.animate-swing {
+  animation: swing 3s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+/* pulsing open badge */
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(229, 56, 59, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(229, 56, 59, 0); }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s infinite;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(245, 241, 235, 0.25);
+  color: transparent;
 }
