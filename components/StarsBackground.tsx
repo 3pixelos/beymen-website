@@ -34,7 +34,7 @@ export default function StarsBackground({
       const { width, height } = canvas.getBoundingClientRect();
       canvas.width = width * devicePixelRatio;
       canvas.height = height * devicePixelRatio;
-      ctx.scale(devicePixelRatio, devicePixelRatio);
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
       const n = Math.floor(width * height * density);
       stars = Array.from({ length: n }, () => ({
         x: Math.random() * width,
@@ -64,10 +64,16 @@ export default function StarsBackground({
     };
 
     resize();
-    raf = requestAnimationFrame(draw);
     window.addEventListener("resize", resize);
+    // only animate while on screen — keeps the rest of the page smooth
+    const io = new IntersectionObserver(([entry]) => {
+      cancelAnimationFrame(raf);
+      if (entry.isIntersecting) raf = requestAnimationFrame(draw);
+    });
+    io.observe(canvas);
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, [density]);

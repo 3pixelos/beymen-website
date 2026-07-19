@@ -1,9 +1,12 @@
 "use client";
 
-import { SITE, RESTAURANTS, MAPS_EMBED } from "@/lib/data";
+import { useState } from "react";
+import { SITE, RESTAURANTS } from "@/lib/data";
 import Reveal from "./Reveal";
 
 export default function MapSection() {
+  const [active, setActive] = useState(RESTAURANTS[0]);
+
   return (
     <section id="contact" className="relative py-28 md:py-36">
       <div className="mx-auto max-w-7xl px-6">
@@ -17,20 +20,37 @@ export default function MapSection() {
         </Reveal>
 
         <div className="grid gap-10 lg:grid-cols-5">
-          {/* map */}
+          {/* map with location toggle */}
           <Reveal className="lg:col-span-3">
+            <div className="mb-4 flex gap-3">
+              {RESTAURANTS.map((r) => (
+                <button
+                  key={r.id}
+                  onClick={() => setActive(r)}
+                  className={`rounded-full px-5 py-2 text-sm transition-all duration-300 ${
+                    active.id === r.id
+                      ? "bg-crimson text-bone shadow-[0_0_25px_rgba(164,22,26,0.4)]"
+                      : "border border-smoke text-ash hover:border-blood/60 hover:text-bone"
+                  }`}
+                >
+                  {r.name}
+                </button>
+              ))}
+            </div>
             <div className="group relative h-[420px] overflow-hidden rounded-2xl border border-smoke">
               <iframe
-                src={MAPS_EMBED}
-                title="Beymen Tanger sur Google Maps"
+                key={active.id}
+                src={active.mapEmbed}
+                title={`${active.name} sur Google Maps`}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="h-full w-full grayscale-[0.6] contrast-[1.05] transition-all duration-700 group-hover:grayscale-0"
+                className="h-full w-full"
                 style={{ border: 0 }}
                 allowFullScreen
               />
               <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-blood/30" />
             </div>
+            <p className="mt-3 text-sm text-ash">📍 {active.address}</p>
           </Reveal>
 
           {/* contact cards */}
@@ -47,7 +67,6 @@ export default function MapSection() {
                     )}
                   </div>
                   <div className="mt-4 space-y-2 text-sm text-ash">
-                    <p>📍 {r.address}</p>
                     <p>
                       📞{" "}
                       <a href={r.phoneHref} className="hover:text-bone transition-colors">
@@ -55,6 +74,17 @@ export default function MapSection() {
                       </a>
                     </p>
                     <p>🕘 {r.hours}</p>
+                    <p>
+                      📸{" "}
+                      <a
+                        href={r.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-ember transition-colors hover:text-bone"
+                      >
+                        {r.instagramHandle}
+                      </a>
+                    </p>
                   </div>
                 </div>
               </Reveal>
@@ -65,38 +95,30 @@ export default function MapSection() {
                 <p className="text-xs uppercase tracking-[0.4em] text-ember">
                   Suivez-nous
                 </p>
-                <a
-                  href={SITE.socials.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 block font-display text-2xl text-bone transition-colors hover:text-ember"
-                >
-                  {SITE.instagramHandle}
-                </a>
-                <div className="mt-4 flex gap-4 text-sm">
+                <div className="mt-3 space-y-2 text-sm">
                   <a
-                    href={SITE.socials.instagram}
+                    href={SITE.socials.instagramIberia}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-ash transition-colors hover:text-bone"
+                    className="block text-bone transition-colors hover:text-ember"
                   >
-                    Instagram
+                    Instagram Iberia — @beymeniberia
                   </a>
                   <a
-                    href={SITE.socials.facebook}
+                    href={SITE.socials.instagramMalabata}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-ash transition-colors hover:text-bone"
+                    className="block text-bone transition-colors hover:text-ember"
                   >
-                    Facebook
+                    Instagram Malabata — @beymentanger
                   </a>
                   <a
                     href={SITE.socials.tiktok}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-ash transition-colors hover:text-bone"
+                    className="block text-ash transition-colors hover:text-bone"
                   >
-                    TikTok
+                    TikTok — @beymentanger
                   </a>
                 </div>
                 <p className="mt-4 text-sm text-ash">

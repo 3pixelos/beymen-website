@@ -98,12 +98,21 @@ export default function ShootingStars({
     };
 
     resize();
-    spawn();
-    raf = requestAnimationFrame(draw);
     window.addEventListener("resize", resize);
+    // only animate while on screen — keeps the rest of the page smooth
+    const io = new IntersectionObserver(([entry]) => {
+      cancelAnimationFrame(raf);
+      clearTimeout(spawnTimer);
+      if (entry.isIntersecting) {
+        spawn();
+        raf = requestAnimationFrame(draw);
+      }
+    });
+    io.observe(canvas);
     return () => {
       cancelAnimationFrame(raf);
       clearTimeout(spawnTimer);
+      io.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, [minDelay, maxDelay]);

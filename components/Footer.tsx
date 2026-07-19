@@ -71,22 +71,22 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-            <div className="mt-4 flex gap-4 text-sm text-ash">
+            <div className="mt-4 flex flex-wrap gap-4 text-sm text-ash">
               <a
-                href={SITE.socials.instagram}
+                href={SITE.socials.instagramIberia}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors hover:text-ember"
               >
-                IG
+                IG Iberia
               </a>
               <a
-                href={SITE.socials.facebook}
+                href={SITE.socials.instagramMalabata}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors hover:text-ember"
               >
-                FB
+                IG Malabata
               </a>
               <a
                 href={SITE.socials.tiktok}
@@ -94,7 +94,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="transition-colors hover:text-ember"
               >
-                TT
+                TikTok
               </a>
             </div>
           </div>

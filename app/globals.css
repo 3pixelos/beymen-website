@@ -95,9 +95,12 @@ body {
 .animate-marquee-reverse {
   animation: marquee-reverse 40s linear infinite;
 }
-.marquee-paused:hover .animate-marquee,
-.marquee-paused:hover .animate-marquee-reverse {
-  animation-play-state: paused;
+/* pause on hover only on devices that actually hover (not touch) */
+@media (hover: hover) and (pointer: fine) {
+  .marquee-paused:hover .animate-marquee,
+  .marquee-paused:hover .animate-marquee-reverse {
+    animation-play-state: paused;
+  }
 }
 
 /* swing for the FERMÉ sign */
