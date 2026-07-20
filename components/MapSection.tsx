@@ -7,7 +7,6 @@ import InstagramLink from "./InstagramLink";
 
 export default function MapSection() {
   const [active, setActive] = useState(RESTAURANTS[0]);
-  const [mapEnabled, setMapEnabled] = useState(false);
 
   return (
     <section id="contact" className="relative py-28 md:py-36">
@@ -50,18 +49,6 @@ export default function MapSection() {
                 style={{ border: 0 }}
                 allowFullScreen
               />
-              {/* shield: the map can't grab touches until deliberately enabled */}
-              {!mapEnabled && (
-                <button
-                  onClick={() => setMapEnabled(true)}
-                  className="absolute inset-0 flex items-end justify-center bg-transparent pb-6"
-                  aria-label="Activer la carte"
-                >
-                  <span className="rounded-full border border-bone/20 bg-ink/80 px-5 py-2 text-xs uppercase tracking-[0.25em] text-bone backdrop-blur-sm">
-                    Toucher pour activer la carte
-                  </span>
-                </button>
-              )}
               <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-blood/30" />
             </div>
             <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
