@@ -24,9 +24,12 @@ export const RESTAURANTS = [
     image: "/images/restaurant-iberia.jpg",
     menu: "/menus/menu-iberia.pdf",
     instagram: "https://www.instagram.com/beymeniberia",
+    instagramUser: "beymeniberia",
     instagramHandle: "@beymeniberia",
     mapEmbed:
       "https://www.google.com/maps?q=35.7832375,-5.8222448(Beymen+Iberia)&z=17&hl=fr&output=embed",
+    directions:
+      "https://www.google.com/maps/dir/?api=1&destination=35.7832375,-5.8222448",
   },
   {
     id: "malabata",
@@ -41,9 +44,12 @@ export const RESTAURANTS = [
     image: "/images/restaurant-malabata.jpg",
     menu: "/menus/menu-malabata.pdf",
     instagram: "https://www.instagram.com/beymentanger",
+    instagramUser: "beymentanger",
     instagramHandle: "@beymentanger",
     mapEmbed:
       "https://www.google.com/maps?q=Beymen+Malabata+Complexe+Le+Printemps+Tanger&z=16&hl=fr&output=embed",
+    directions:
+      "https://www.google.com/maps/dir/?api=1&destination=Beymen+Malabata+Complexe+Le+Printemps+Tanger",
   },
 ];
 

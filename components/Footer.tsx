@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { SITE, RESTAURANTS } from "@/lib/data";
 import BullLogo from "./BullLogo";
+import InstagramLink from "./InstagramLink";
 
 /** Footer with giant wordmark reveal (inspired by 21st.dev footer-section). */
 export default function Footer() {
@@ -72,22 +73,18 @@ export default function Footer() {
               </li>
             </ul>
             <div className="mt-4 flex flex-wrap gap-4 text-sm text-ash">
-              <a
-                href={SITE.socials.instagramIberia}
-                target="_blank"
-                rel="noopener noreferrer"
+              <InstagramLink
+                username="beymeniberia"
                 className="transition-colors hover:text-ember"
               >
                 IG Iberia
-              </a>
-              <a
-                href={SITE.socials.instagramMalabata}
-                target="_blank"
-                rel="noopener noreferrer"
+              </InstagramLink>
+              <InstagramLink
+                username="beymentanger"
                 className="transition-colors hover:text-ember"
               >
                 IG Malabata
-              </a>
+              </InstagramLink>
               <a
                 href={SITE.socials.tiktok}
                 target="_blank"

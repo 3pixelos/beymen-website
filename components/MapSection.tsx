@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { SITE, RESTAURANTS } from "@/lib/data";
 import Reveal from "./Reveal";
+import InstagramLink from "./InstagramLink";
 
 export default function MapSection() {
   const [active, setActive] = useState(RESTAURANTS[0]);
+  const [mapEnabled, setMapEnabled] = useState(false);
 
   return (
     <section id="contact" className="relative py-28 md:py-36">
@@ -22,7 +24,7 @@ export default function MapSection() {
         <div className="grid gap-10 lg:grid-cols-5">
           {/* map with location toggle */}
           <Reveal className="lg:col-span-3">
-            <div className="mb-4 flex gap-3">
+            <div className="mb-4 flex flex-wrap gap-3">
               {RESTAURANTS.map((r) => (
                 <button
                   key={r.id}
@@ -37,7 +39,7 @@ export default function MapSection() {
                 </button>
               ))}
             </div>
-            <div className="group relative h-[420px] overflow-hidden rounded-2xl border border-smoke">
+            <div className="relative h-[420px] overflow-hidden rounded-2xl border border-smoke">
               <iframe
                 key={active.id}
                 src={active.mapEmbed}
@@ -48,9 +50,31 @@ export default function MapSection() {
                 style={{ border: 0 }}
                 allowFullScreen
               />
+              {/* shield: the map can't grab touches until deliberately enabled */}
+              {!mapEnabled && (
+                <button
+                  onClick={() => setMapEnabled(true)}
+                  className="absolute inset-0 flex items-end justify-center bg-transparent pb-6"
+                  aria-label="Activer la carte"
+                >
+                  <span className="rounded-full border border-bone/20 bg-ink/80 px-5 py-2 text-xs uppercase tracking-[0.25em] text-bone backdrop-blur-sm">
+                    Toucher pour activer la carte
+                  </span>
+                </button>
+              )}
               <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-blood/30" />
             </div>
-            <p className="mt-3 text-sm text-ash">📍 {active.address}</p>
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+              <p className="text-sm text-ash">📍 {active.address}</p>
+              <a
+                href={active.directions}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-crimson/60 px-5 py-2 text-xs uppercase tracking-[0.2em] text-bone transition-all hover:bg-crimson"
+              >
+                Itinéraire →
+              </a>
+            </div>
           </Reveal>
 
           {/* contact cards */}
@@ -76,14 +100,12 @@ export default function MapSection() {
                     <p>🕘 {r.hours}</p>
                     <p>
                       📸{" "}
-                      <a
-                        href={r.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <InstagramLink
+                        username={r.instagramUser}
                         className="text-ember transition-colors hover:text-bone"
                       >
                         {r.instagramHandle}
-                      </a>
+                      </InstagramLink>
                     </p>
                   </div>
                 </div>
@@ -96,22 +118,18 @@ export default function MapSection() {
                   Suivez-nous
                 </p>
                 <div className="mt-3 space-y-2 text-sm">
-                  <a
-                    href={SITE.socials.instagramIberia}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <InstagramLink
+                    username="beymeniberia"
                     className="block text-bone transition-colors hover:text-ember"
                   >
                     Instagram Iberia — @beymeniberia
-                  </a>
-                  <a
-                    href={SITE.socials.instagramMalabata}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  </InstagramLink>
+                  <InstagramLink
+                    username="beymentanger"
                     className="block text-bone transition-colors hover:text-ember"
                   >
                     Instagram Malabata — @beymentanger
-                  </a>
+                  </InstagramLink>
                   <a
                     href={SITE.socials.tiktok}
                     target="_blank"

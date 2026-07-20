@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { GALLERY } from "@/lib/data";
 import Reveal from "./Reveal";
+import InstagramLink from "./InstagramLink";
 
 /**
  * Scroll-driven cinema strip: the section pins and the photo track slides
@@ -78,10 +79,8 @@ export default function Gallery() {
           ))}
 
           {/* end card */}
-          <a
-            href="https://www.instagram.com/beymeniberia"
-            target="_blank"
-            rel="noopener noreferrer"
+          <InstagramLink
+            username="beymeniberia"
             className="flex aspect-[3/4] w-[70vw] shrink-0 flex-col items-center justify-center gap-4 rounded-2xl border border-blood/40 bg-gradient-to-br from-blood/25 to-coal text-center transition-colors hover:border-crimson sm:w-[45vw] md:w-[26rem]"
           >
             <span className="font-display text-2xl text-bone md:text-3xl">
@@ -90,7 +89,7 @@ export default function Gallery() {
             <span className="text-xs uppercase tracking-[0.3em] text-ember">
               @beymeniberia sur Instagram →
             </span>
-          </a>
+          </InstagramLink>
         </motion.div>
 
         {/* progress bar */}
