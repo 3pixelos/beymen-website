@@ -10,11 +10,29 @@ export const SITE = {
   },
 };
 
-export const RESTAURANTS = [
+type RestaurantStatus = "open" | "closed";
+
+export const RESTAURANTS: Array<{
+  id: string;
+  name: string;
+  status: RestaurantStatus;
+  phone: string;
+  phoneHref: string;
+  hours: string;
+  address: string;
+  description: string;
+  image: string;
+  menu: string;
+  instagram: string;
+  instagramUser: string;
+  instagramHandle: string;
+  mapEmbed: string;
+  directions: string;
+}> = [
   {
     id: "iberia",
     name: "Beymen Iberia",
-    status: "open" as const,
+    status: "open",
     phone: "+212 667 679 763",
     phoneHref: "tel:+212667679763",
     hours: "08:00 — 02:00",
@@ -34,13 +52,13 @@ export const RESTAURANTS = [
   {
     id: "malabata",
     name: "Beymen Malabata",
-    status: "closed" as const,
+    status: "open",
     phone: "+212 689 790 825",
     phoneHref: "tel:+212689790825",
     hours: "09:00 — 02:00",
     address: "Corniche Malabata, Complexe Le Printemps, Av. Mohammed VI, Tanger",
     description:
-      "Face à la baie de Tanger, notre adresse emblématique de la corniche Malabata fait peau neuve. Réouverture très bientôt — encore plus belle.",
+      "Face à la baie de Tanger, notre adresse emblématique de la corniche Malabata. Cadre raffiné, grillades au feu de bois et spectacle chaque soir, les pieds presque dans l'eau.",
     image: "/images/restaurant-malabata.jpg",
     menu: "/menus/menu-malabata.pdf",
     instagram: "https://www.instagram.com/beymentanger",
